@@ -2,37 +2,48 @@
 
 The Universal Permissive License (UPL), Version 1.0*/
 
+variable "load_balancer_subnet" {
 
-variable load_balancer_subnet {
-    type = "list"
 }
 
 variable "availability_domain" {
-    type = "list"
-    description = "Availability domain"
+  type        = list(string)
+  description = "Availability domain"
 }
 
-variable "AD" {
-    type= "list"
+variable "load_balancer_name" {
 }
-variable load_balancer_name {}
-variable compartment_ocid {}
-variable load_balancer_shape {}
-variable load_balancer_private {
-    default = "True"
+
+variable "compartment_ocid" {
 }
-/*variable be1_ip_address1 {
-    type="string"
+
+variable "load_balancer_shape" {
 }
-*/
 
-
-variable be_ip_addresses {
-    type="list"
+variable "freeform_tags" {
+  type = map(any)
+  default = {
+    environment = "dev"
+  }
 }
-variable load_balancer_hostname {}
 
-variable web_instance_listen_port {}
-variable load_balancer_listen_port {}
+variable "load_balancer_private" {
+  default = "True"
+}
 
-variable web_instance_count {}
+variable "be_ip_addresses" {
+  type = list(string)
+}
+
+variable "load_balancer_hostname" {
+}
+
+variable "web_instance_listen_port" {
+}
+
+variable "load_balancer_listen_port" {
+}
+
+variable "web_instance_count" {
+}
+

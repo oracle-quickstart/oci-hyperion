@@ -2,20 +2,19 @@
 
 The Universal Permissive License (UPL), Version 1.0*/
 
-
 output "ComputePrivateIPs" {
-value = ["${oci_core_instance.compute.*.private_ip}"]
+  value = oci_core_instance.compute[*].private_ip
 }
 
 output "ComputeWinHostNames" {
-  value = ["${oci_core_instance.compute.*.display_name}"]
+  value = oci_core_instance.compute[*].display_name
 }
 
 output "ComputeWinusers" {
-value = ["${data.oci_core_instance_credentials.win.*.username}"]
+  value = data.oci_core_instance_credentials.win.*.username
 }
 
 output "ComputeWincreds" {
-value = ["${data.oci_core_instance_credentials.win.*.password}"]
+  value = data.oci_core_instance_credentials.win.*.password
 }
 

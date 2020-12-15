@@ -201,11 +201,8 @@ epm_web_instance_bv_vpus_per_gb = "<Block volume vpus per gb>"
 #----------- EPM Database Configuration ------------------------
 ####### EPM Hyperion Database ###########################
 
+#Whether EPM database is required to be provisioned
 epm_database_required = "<true/false>"
-
-#epm_database_backup_config_required = "true"
-
-#epm_database_backup_recovery_window = "30"
 
 # Database Edition
 db_edition = "<Database Edition>"

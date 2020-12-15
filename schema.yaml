@@ -1,1054 +1,907 @@
-  title: Oracle Enterprise Performance Management
-  description: Oracle Enterprise Performance Management on Oracle Cloud Infrastructure
-  schemaVersion: 1.1.0
-  version: "20190304"
-  locale: "en"
+title: Oracle Enterprise Performance Management
+description: Provisions Infrastructure to install EPM
+informationalText: "The Resource Manager Stack just creates the infrastructure components (compute, database, load balancer etc). EPM software is required to be installed manually."
+schemaVersion: 1.1.0
+version: "20200822"
+locale: "en"
 
-  # URL of Logo Icon used on Application Information tab. Logo must be 130x130 pixels.
-  # (Optional)
-  #logoUrl: https://cloudmarketplace.oracle.com/marketplace/content?contentId=63497741
-
-  # Used in Application Information tab to Hyperlink Title and Logo to the Marketplace listing.
-  # Also used to link to Listing Usage section for "View Instructions".
-  # (Optional) If it is missing, Application Information uses the
-  # "marketplace-listing-id" tag for the same purpose.
-  #source:
-  #  type: marketplace
-  #  reference: 63497640
-
-  groupings:
-
+variableGroups:
   - title: "General Configuration"
+    visible: true
     variables:
-#!    - ${singlead}
-#    - ${availability_domain1}
-#    - ${multiad}
-#    - ${availability_domain2}
-    - ${compartment_ocid}
-    - ${vcn_cidr}
-    - ${vcn_dns_label}
-    - ${ssh_public_key}
-    - ${timezone}
-    - ${epm_env_prefix}
-    - ${AD}
-#    - ${bastion_host_required}
+    - compartment_ocid
+    - vcn_cidr
+    - vcn_dns_label
+    - ssh_public_key
+    - timezone
+    - epm_env_prefix
+    - AD
 
   - title: "Choose EPM Application"
+    visible: true
     variables:
-    - ${epm_financial_management}
-    - ${epm_planning}
-    - ${add_additional_products}
-    - ${epm_profitability_required}
-    - ${epm_strategic_finance_required}
-    - ${epm_fdmee_required}
+    - epm_financial_management
+    - epm_planning
+    - add_additional_products
+    - epm_profitability_required
+    - epm_strategic_finance_required
+    - epm_fdmee_required
 
   - title: "Hyperion Financial Management Configuration"
+    visible: true
     variables:
-    - ${epm_hfm_instance_count}
-    - ${epm_hfm_instance_shape}
-    - ${epm_hfm_instance_bv_size_in_gb}
-    - ${epm_hfm_instance_bv_vpus_per_gb}
-    - ${epm_htp_required}
+    - epm_hfm_instance_count
+    - epm_hfm_instance_shape
+    - epm_hfm_instance_bv_size_in_gb
+    - epm_hfm_instance_bv_vpus_per_gb
+    - epm_htp_required
 
   - title: "Tax Provisioning Configuration"
+    visible: true
     variables:
-    - ${epm_htp_instance_count}
-    - ${epm_htp_instance_shape}
-    - ${epm_htp_instance_bv_size_in_gb}
-    - ${epm_htp_instance_bv_vpus_per_gb}
+    - epm_htp_instance_count
+    - epm_htp_instance_shape
+    - epm_htp_instance_bv_size_in_gb
+    - epm_htp_instance_bv_vpus_per_gb
 
   - title: "Hyperion Planning Configuration"
+    visible: true
     variables:
-    - ${epm_planning_instance_count}
-    - ${epm_planning_instance_shape}
-    - ${epm_planning_instance_bv_size_in_gb}
-    - ${epm_planning_instance_bv_vpus_per_gb}
-    - ${epm_essbase_required}
-    - ${epm_essbase_instance_count}
-    - ${epm_essbase_instance_shape}
-    - ${epm_essbase_instance_bv_size_in_gb}
-    - ${epm_essbase_instance_bv_vpus_per_gb}
+    - epm_planning_instance_count
+    - epm_planning_instance_shape
+    - epm_planning_instance_bv_size_in_gb
+    - epm_planning_instance_bv_vpus_per_gb
+    - epm_essbase_required
+    - epm_essbase_instance_count
+    - epm_essbase_instance_shape
+    - epm_essbase_instance_bv_size_in_gb
+    - epm_essbase_instance_bv_vpus_per_gb
 
   - title: "Foundation Configuration"
+    visible: true
     variables:
-    - ${epm_foundation_instance_count}
-    - ${epm_foundation_instance_shape}
+    - epm_foundation_instance_count
+    - epm_foundation_instance_shape
 #    - ${myImageId}
-    - ${epm_foundation_instance_bv_size_in_gb}
-    - ${epm_foundation_instance_bv_vpus_per_gb}
-    - ${foundation_db_separate}
-    - ${foundation_db_name}
-    - ${foundation_pdb_name}
-    - ${foundation_db_admin_password}
-    - ${foundation_db_version}
-    - ${foundation_db_edition}
-    - ${foundation_db_license_model}
-    - ${foundation_db_node_count}
-    - ${foundation_db_instance_shape}
-    - ${foundation_db_size_in_gb}
-    - ${foundation_db_characterset}
-    - ${foundation_db_nls_characterset}
+    - epm_foundation_instance_bv_size_in_gb
+    - epm_foundation_instance_bv_vpus_per_gb
+    - foundation_db_separate
+    - foundation_db_name
+    - foundation_pdb_name
+    - foundation_db_admin_password
+    - foundation_db_version
+    - foundation_db_edition
+    - foundation_db_license_model
+    - foundation_db_node_count
+    - foundation_db_instance_shape
+    - foundation_db_size_in_gb
+    - foundation_db_characterset
+    - foundation_db_nls_characterset
 
   - title: "EPM Database Configuration"
+    visible: true
     variables:
-    - ${epm_database_required}
-    - ${db_name}
-    - ${db_pdb_name}
-    - ${db_admin_password}
-    - ${db_version}
-    - ${db_edition}
-    - ${db_license_model}
-    - ${db_node_count}
-    - ${db_instance_shape}
-    - ${db_size_in_gb}
-    - ${db_characterset}
-    - ${db_nls_characterset}
+    - epm_database_required
+    - db_name
+    - db_pdb_name
+    - db_admin_password
+    - db_version
+    - db_edition
+    - db_license_model
+    - db_node_count
+    - db_instance_shape
+    - db_size_in_gb
+    - db_characterset
+    - db_nls_characterset
 
   - title: "Web Server Configuration"
+    visible: true
     variables:
-    - ${epm_web_instance_count}
-    - ${epm_web_instance_shape}
-    - ${epm_web_instance_bv_size_in_gb}
-    - ${epm_web_instance_bv_vpus_per_gb}
-    - ${epm_web_instance_listen_port}
+    - epm_web_instance_count
+    - epm_web_instance_shape
+    - epm_web_instance_bv_size_in_gb
+    - epm_web_instance_bv_vpus_per_gb
+    - epm_web_instance_listen_port
 
   - title: "Profitability Configuration"
+    visible: true
     variables:
-    - ${epm_profitability_instance_count}
-    - ${epm_profitability_instance_shape}
-    - ${epm_profitability_instance_bv_size_in_gb}
-    - ${epm_profitability_instance_bv_vpus_per_gb}
+    - epm_profitability_instance_count
+    - epm_profitability_instance_shape
+    - epm_profitability_instance_bv_size_in_gb
+    - epm_profitability_instance_bv_vpus_per_gb
 
   - title: "Strategic Finance Configuration"
+    visible: true
     variables:
-    - ${epm_strategic_finance_instance_count}
-    - ${epm_strategic_finance_instance_shape}
-    - ${epm_strategic_finance_instance_bv_size_in_gb}
-    - ${epm_strategic_finance_instance_bv_vpus_per_gb}
+    - epm_strategic_finance_instance_count
+    - epm_strategic_finance_instance_shape
+    - epm_strategic_finance_instance_bv_size_in_gb
+    - epm_strategic_finance_instance_bv_vpus_per_gb
 
   - title: "FDMEE Configuration"
+    visible: true
     variables:
-    - ${epm_fdmee_instance_count}
-    - ${epm_fdmee_instance_shape}
-    - ${epm_fdmee_instance_bv_size_in_gb}
-    - ${epm_fdmee_instance_bv_vpus_per_gb}
+    - epm_fdmee_instance_count
+    - epm_fdmee_instance_shape
+    - epm_fdmee_instance_bv_size_in_gb
+    - epm_fdmee_instance_bv_vpus_per_gb
 
   - title: "Load Balancer Configuration"
+    visible: true
     variables:
-    - ${load_balancer_private}
-    - ${load_balancer_hostname}
-    - ${load_balancer_shape}
-    - ${load_balancer_listen_port}
+    - load_balancer_private
+    - load_balancer_hostname
+    - load_balancer_shape
+    - load_balancer_listen_port
 
+variables:
+  epm_financial_management:
+    title: Hyperion Financial Management
+    description: Create Infrastructure for Hyperion Financial Management
+    type: boolean
+    default: false
+    required: true
+    visible: true
 
-  variables:
-    epm_financial_management:
-      title: Hyperion Financial Management
-      description: Create Infrastructure for Hyperion Financial Management
-      type: boolean
-      default: false
-      required: true
-      visible: true
+  epm_planning:
+    title: Hyperion Planning
+    description: Create Infrastructure for Hyperion Planning
+    type: boolean
+    default: false
+    visible: true
+    required: true
 
-    epm_planning:
-      title: Hyperion Planning
-      description: Create Infrastructure for Hyperion Planning
-      type: boolean
-      default: false
-      visible: true
-      required: true
+  epm_htp_required:
+    title: Hyperion Tax Provisioning
+    description: Create Infrastructure for Hyperion Tax Provisioning
+    type: boolean
+    default: false
+    visible: epm_financial_management
 
-    epm_htp_required:
-      title: Hyperion Tax Provisioning
-      description: Create Infrastructure for Hyperion Tax Provisioning
-      type: boolean
-      default: false
-      visible: ${epm_financial_management}
+  epm_essbase_required:
+    title: Create Essbase Instance
+    description: Create Infrastructure for Essbase
+    type: boolean
+    default: false
+    visible: epm_planning
 
-    epm_essbase_required:
-      title: Create Essbase Instance
-      description: Create Infrastructure for Essbase
-      type: boolean
-      default: false
-      visible: ${epm_planning}
+  epm_database_required:
+    title: Create EPM database
+    description: Create EPM database system
+    type: boolean
+    default: false
+    visible: true
+    required: true
 
-    epm_database_required:
-      title: Create EPM database
-      description: Create EPM database system
-      type: boolean
-      default: false
-      visible: true
-      required: true
+  epm_database_backup_config_required:
+    title: Configure database backups
+    description: Configure Automatic database backups
+    type: boolean
+    default: true
+    visible: false
 
-    epm_database_backup_config_required:
-      title: Configure database backups
-      description: Configure Automatic database backups
-      type: boolean
-      default: true
-      visible: false
+  foundation_db_separate:
+    title: Separate Foundation Services Database
+    description: Create separate database for Foundation services
+    type: boolean
+    default: false
+    visible: true
+    required: true
 
-    foundation_db_separate:
-      title: Separate Foundation Services Database
-      description: Create separate database for Foundation services
-      type: boolean
-      default: false
-      visible: true
-      required: true
+  add_additional_products:
+    title: Additional products
+    description: Choose additional EPM products
+    type: boolean
+    default: false
+    visible: true
+    required: true
 
-    add_additional_products:
-      title: Additional products
-      description: Choose additional EPM products
-      type: boolean
-      default: false
-      visible: true
-      required: true
+  epm_profitability_required:
+    title: Profitability
+    description: Create Infrastructure for Profitability
+    type: boolean
+    default: false
+    visible: add_additional_products
+    required: true
 
-    epm_profitability_required:
-      title: Profitability
-      description: Create Infrastructure for Profitability
-      type: boolean
-      default: false
-      visible: ${add_additional_products}
-      required: true
+  epm_strategic_finance_required:
+    title: Strategic Finance
+    description: Create Infrastructure for Strategic Finance
+    type: boolean
+    default: false
+    visible: add_additional_products
+    required: true
 
-    epm_strategic_finance_required:
-      title: Strategic Finance
-      description: Create Infrastructure for Strategic Finance
-      type: boolean
-      default: false
-      visible: ${add_additional_products}
-      required: true
+  epm_fdmee_required:
+    title: FDMEE
+    description: Create Infrastructure for FDMEE
+    type: boolean
+    default: false
+    visible: add_additional_products
+    required: true
 
-    epm_fdmee_required:
-      title: FDMEE
-      description: Create Infrastructure for FDMEE
-      type: boolean
-      default: false
-      visible: ${add_additional_products}
-      required: true
+  tenancy_ocid:
+    title: Tenancy ID
+    description: The Oracle Cloud Identifier (OCID) for your tenancy
+    type: string
+    required: true
+    visible: false
 
-    tenancy_ocid:
-      title: Tenancy ID
-      description: The Oracle Cloud Identifier (OCID) for your tenancy
-      type: string
-      required: true
-      visible: false
+  region:
+    title: Region
+    description: The region in which to create all resources
+    type: oci:identity:region:name
+    required: true
+    visible: false
 
-    region:
-      title: Region
-      description: The region in which to create all resources
-      type: oci:identity:region:name
-      required: true
-      visible: false
+  compartment_ocid:
+    title: Target Compartment
+    description: The target compartment to provision all resources
+    type: oci:identity:compartment:id
+    required: true
 
-    compartment_ocid:
-      title: Target Compartment
-      description: The target compartment to provision all resources
-      type: oci:identity:compartment:id
-      required: true
-          
+  user_ocid:
+    title: User ID
+    description: The Oracle Cloud Identifier (OCID) for the user
+    type: string
+    visible: false
 
-#    availability_domain1:
-#      type: oci:identity:availabilitydomain:name 
-#      title: "Availability Domain"
-#      description: "Select Availability Domain"
-#      dependsOn:
-#        compartmentId: ${compartment_ocid}
-#      visible: true
-#      required: true
+  fingerprint:
+    title: Private Key Fingerprint
+    type: string
+    visible: false
 
-#    availability_domain2:
-#      type: oci:identity:availabilitydomain:name 
-#      title: "Availability Domain"
-#      description: "Select Availability Domain"
-#      dependsOn:
-#        compartmentId: ${compartment_ocid}
-#      visible: ${multiad}
-#      required: true
+  private_key_path:
+    title: Private Key Path
+    type: string
+    visible: false
 
-#    multiad:
-#      title: Multiple Availability Domains
-#      description: Provision in multiple availability domains.
-#      type: boolean
-#      default: false
-#      visible: true
+  ssh_public_key:
+    type: oci:core:ssh:publickey
+    title: "Public Key for Database System(s)"
+    description: "Public SSH key to be included in the ~/.ssh/authorized_keys file for the opc user on the instance"
+    additionalProps:
+      allowMultiple: false
+    pattern: "((^(ssh-rsa AAAAB3NzaC1yc2|ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNT|ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzOD|ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1Mj|ssh-ed25519 AAAAC3NzaC1lZDI1NTE5|ssh-dss AAAAB3NzaC1kc3)[0-9A-Za-z+\/]+[=]{0,3})( [^,]*)?)(,((ssh-rsa AAAAB3NzaC1yc2|ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNT|ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzOD|ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1Mj|ssh-ed25519 AAAAC3NzaC1lZDI1NTE5|ssh-dss AAAAB3NzaC1kc3)[0-9A-Za-z+\/]+[=]{0,3})( [^,]*)?)*$"
+    required: true
+    visible: true
 
-#    singlead:
-#      title: High Availability - Single Availability Domain
-#      description: High Availability - Single Availability Domain
-#      type: boolean
-#      default: false
-#      visible:
-#        not:
-#        - ${multiad}
+  instance_os:
+    title: Instance os
+    description: Operating system of bastion host.
+    type: string
+    visible: false
 
-    user_ocid:
-      title: User ID
-      description: The Oracle Cloud Identifier (OCID) for the user
-      type: string
-      visible: false
+  linux_os_version:
+    title: Instance os
+    description: Operating system version of bastion host.
+    type: string
+    visible: false
 
-    fingerprint:
-      title: Private Key Fingerprint
-      type: string
-      visible: false
-
-    private_key_path:
-      title: Private Key Path
-      type: string
-      visible: false
-
-    ssh_public_key:
-      title: Public SSH Key
-      description: Public SSH key to be included in the ~/.ssh/authorized_keys file for the default user on bastion and database nodes.
-      type: string
-      visible: true
-      required: true
-
-    instance_os:
-      title: Instance os
-      description: Operating system of bastion host.
-      type: string
-      visible: false
-
-    linux_os_version:
-      title: Instance os
-      description: Operating system version of bastion host.
-      type: string
-      visible: false
-
-    vcn_cidr:
-      title: Virtual Network CIDR
-      description: Only /16 predefined CIDRs supported.
-      visible: true
-      type: enum
-      enum:
+  vcn_cidr:
+    title: Virtual Network CIDR
+    description: Only /16 predefined CIDRs supported.
+    visible: true
+    type: enum
+    enum:
       - 172.16.0.0/16
       - 10.0.0.0/16
       - 192.168.0.0/16
-      default: 172.16.0.0/16
-      required: true
-      
-    vcn_dns_label:
-      title: DNS label
-      description: VCN DNS Label.
-      type: string
-      visible: false
+    default: 172.16.0.0/16
+    required: true
 
-    bastion_instance_shape:
-      title: DNS label
-      type: string
-      visible: false
+  vcn_dns_label:
+    title: DNS label
+    description: VCN DNS Label.
+    type: string
+    visible: false
 
-    epm_env_prefix:
-      title: Resource Display Name Prefix
-      description: Display name prefix for all generated compute, network and database resources.
-      type: string
-      maxLength: 3
-      pattern: "^([a-zA-Z_][a-zA-Z0-9\\-_]*)?$"
-      default: "epm"
-      required: true
+  bastion_instance_shape:
+    title: DNS label
+    type: string
+    visible: false
 
-    epm_foundation_instance_count:
-      type: integer
-      minimum: 1
-      maximum: 6
-      title: Number of Foundation Services Node(s)
-      description: Minimum required is 1
-      default: 1
-      visible: true
-      required: true
+  epm_env_prefix:
+    title: Resource Display Name Prefix
+    description: Display name prefix for all generated compute, network and database resources.
+    type: string
+    maxLength: 3
+    pattern: "^([a-z][a-z0-9]{0,2})$"
+    default: "epm"
+    required: true
 
-#    myImageId:
-#      type: oci:core:image:id
-#      pattern: "${platform-images[${region}]}" 
-#      dependsOn:
-#        compartmentId: ${compartment_ocid}
+  epm_foundation_instance_count:
+    type: integer
+    minimum: 1
+    maximum: 6
+    title: Number of Foundation Services Node(s)
+    description: Minimum required is 1
+    default: 1
+    visible: true
+    required: true
 
-#    epm_foundation_instance_shape:
-#      title: Foundation Service Instance Shape
-#      description: The shape for the Foundation Service instance.
-#      type: oci:core:instanceshape:name
-#      visible: true
-#      default: VM.Standard2.1
-#      required: true
-#      dependsOn:
-#        compartmentId: ${compartment_ocid}
-#!        imageId: ${myImageId}
-#!        imageId: "ocid1.image.oc1.uk-london-1.aaaaaaaaraiur2saeneruix7avikzgvobacex4a3lkexwurty7iinqgs5kkq"
+#  myImageId:
+#    type: oci:core:image:id
+#    pattern: "${platform-images[${region}]}"
+#    dependsOn:
+#      compartmentId: ${compartment_ocid}
 
-    epm_foundation_instance_shape:
-      title: Foundation Service Instance Shape
-      description: The shape for the Foundation Service instance.
-      type: enum
-      default: VM.Standard2.1
-      enum:
+  epm_foundation_instance_shape:
+    title: Foundation Service Instance Shape
+    description: The shape for the Foundation Service instance.
+    type: enum
+    default: VM.Standard2.1
+    enum:
       - "VM.Standard2.1"
       - "VM.Standard2.2"
       - "VM.Standard2.4"
       - "VM.Standard2.8"
       - "VM.Standard2.16"
       - "VM.Standard2.24"
-      visible: true
-      required: true
+    visible: true
+    required: true
 
-    epm_foundation_instance_bv_size_in_gb:
-      type: integer
-      title: Block Volume size (in GB)
-      description: The size of the block volume in GBs. Minimum required is 50 GB
-      minimum: 50
-      maximum: 32768
-      multipleof: 1
-      visible: true
-      default: 100
-      required: true
+  epm_foundation_instance_bv_size_in_gb:
+    type: integer
+    title: Block Volume size (in GB)
+    description: The size of the block volume in GBs. Minimum required is 50 GB
+    minimum: 50
+    maximum: 32768
+    multipleof: 1
+    visible: true
+    default: 100
+    required: true
 
-    epm_foundation_instance_bv_vpus_per_gb:
-      title: Block Volume Performance
-      description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
-      visible: true
-      type: enum
-      enum:
+  epm_foundation_instance_bv_vpus_per_gb:
+    title: Block Volume Performance
+    description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
+    visible: true
+    type: enum
+    enum:
       - 0
       - 10
       - 20
-      default: 0
-      required: true
+    default: 0
+    required: true
 
-    epm_planning_instance_count:
-      title: Number of Planning Node(s)
-      description: Minimum required is 1
-      type: integer
-      minimum: 1
-      maximum: 6
-      required: true
-      visible: ${epm_planning}
-        
-#    epm_planning_instance_shape:
-#      title: Planning Instance Shape
-#      description: The shape for the Planning instance.
-#      type: oci:core:instanceshape:name
-#      visible: ${epm_planning}
-#      default: VM.Standard2.1
-#      required: true
-#      dependsOn:
-#        compartmentId: ${compartment_ocid}
+  epm_planning_instance_count:
+    title: Number of Planning Node(s)
+    description: Minimum required is 1
+    type: integer
+    minimum: 1
+    maximum: 6
+    required: true
+    visible: epm_planning
 
-    epm_planning_instance_shape:
-      title: Planning Instance Shape
-      description: The shape for the Planning instance.
-      type: enum
-      default: VM.Standard2.1
-      enum:
+  epm_planning_instance_shape:
+    title: Planning Instance Shape
+    description: The shape for the Planning instance.
+    type: enum
+    default: VM.Standard2.1
+    enum:
       - "VM.Standard2.1"
       - "VM.Standard2.2"
       - "VM.Standard2.4"
       - "VM.Standard2.8"
       - "VM.Standard2.16"
       - "VM.Standard2.24"
-      visible: ${epm_planning}
-      required: true
-      
-    epm_planning_instance_bv_size_in_gb:
-      type: integer
-      title: Block Volume size (in GB)
-      description: The size of the block volume in GBs. Minimum required is 50 GB
-      minimum: 50
-      maximum: 32768
-      multipleof: 1
-      visible: ${epm_planning}
-      default: 100
-      required: true
+    visible: epm_planning
+    required: true
 
-    epm_planning_instance_bv_vpus_per_gb:
-      title: Block Volume Performance
-      description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
-      visible: ${epm_planning}
-      type: enum
-      enum:
+  epm_planning_instance_bv_size_in_gb:
+    type: integer
+    title: Block Volume size (in GB)
+    description: The size of the block volume in GBs. Minimum required is 50 GB
+    minimum: 50
+    maximum: 32768
+    multipleof: 1
+    visible: epm_planning
+    default: 100
+    required: true
+
+  epm_planning_instance_bv_vpus_per_gb:
+    title: Block Volume Performance
+    description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
+    visible: epm_planning
+    type: enum
+    enum:
       - 0
       - 10
       - 20
-      default: 0
-      required: true
+    default: 0
+    required: true
 
-    epm_hfm_instance_count:
-      title: Number of Financial Management Node(s)
-      description: Minimum required is 1
-      type: integer
-      minimum: 1
-      maximum: 2
-      required: true
-      visible: ${epm_financial_management}
+  epm_hfm_instance_count:
+    title: Number of Financial Management Node(s)
+    description: Minimum required is 1
+    type: integer
+    minimum: 1
+    maximum: 2
+    required: true
+    visible: epm_financial_management
 
-#    epm_hfm_instance_shape:
-#      title: Financial Management Instance Shape
-#      description: The shape for the Financial Management instance.
-#      type: oci:core:instanceshape:name
-#      visible: ${epm_financial_management}
-#      default: VM.Standard2.1
-#      required: true
-#      dependsOn:
-#        compartmentId: ${compartment_ocid}
-
-
-    epm_hfm_instance_shape:
-      title: Financial Management Instance Shape
-      description: The shape for the Financial Management instance.
-      type: enum
-      default: VM.Standard2.1
-      enum:
+  epm_hfm_instance_shape:
+    title: Financial Management Instance Shape
+    description: The shape for the Financial Management instance.
+    type: enum
+    default: VM.Standard2.1
+    enum:
       - "VM.Standard2.1"
       - "VM.Standard2.2"
       - "VM.Standard2.4"
       - "VM.Standard2.8"
       - "VM.Standard2.16"
       - "VM.Standard2.24"
-      visible: ${epm_financial_management}
-      required: true
+    visible: epm_financial_management
+    required: true
 
-    epm_hfm_instance_bv_size_in_gb:
-      type: integer
-      title: Block Volume size (in GB)
-      description: The size of the block volume in GBs. Minimum required is 50 GB
-      minimum: 50
-      maximum: 32768
-      multipleof: 1
-      visible: ${epm_financial_management}
-      default: 100
-      required: true
+  epm_hfm_instance_bv_size_in_gb:
+    type: integer
+    title: Block Volume size (in GB)
+    description: The size of the block volume in GBs. Minimum required is 50 GB
+    minimum: 50
+    maximum: 32768
+    multipleof: 1
+    visible: epm_financial_management
+    default: 100
+    required: true
 
-    epm_hfm_instance_bv_vpus_per_gb:
-      title: Block Volume Performance
-      description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
-      visible: ${epm_financial_management}
-      type: enum
-      enum:
+  epm_hfm_instance_bv_vpus_per_gb:
+    title: Block Volume Performance
+    description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
+    visible: epm_financial_management
+    type: enum
+    enum:
       - 0
       - 10
       - 20
-      default: 0
-      required: true
+    default: 0
+    required: true
 
-    epm_htp_instance_count:
-      title: Number of Hyperion Tax Provision Node(s)
-      description: Minimum required is 1
-      type: integer
-      minimum: 1
-      maximum: 2
-      visible: 
-        and:
-        - ${epm_financial_management}
-        - ${epm_htp_required}
-      required: true
+  epm_htp_instance_count:
+    title: Number of Hyperion Tax Provision Node(s)
+    description: Minimum required is 1
+    type: integer
+    minimum: 1
+    maximum: 2
+    visible:
+      and:
+      - epm_financial_management
+      - epm_htp_required
+    required: true
 
-#    epm_htp_instance_shape:
-#      title: Hyperion Tax Provision Instance Shape
-#      description: The shape for the Hyperion Tax Provision instance.
-#      type: oci:core:instanceshape:name
-#      visible: 
-#        and:
-#        - ${epm_financial_management}
-#        - ${epm_htp_required}
-#      default: VM.Standard2.1
-#      required: true
-#      dependsOn:
-#        compartmentId: ${compartment_ocid}
-
-    epm_htp_instance_shape:
-      title: Hyperion Tax Provision Instance Shape
-      description: The shape for the Hyperion Tax Provision instance.
-      type: enum
-      default: VM.Standard2.1
-      enum:
+  epm_htp_instance_shape:
+    title: Hyperion Tax Provision Instance Shape
+    description: The shape for the Hyperion Tax Provision instance.
+    type: enum
+    default: VM.Standard2.1
+    enum:
       - "VM.Standard2.1"
       - "VM.Standard2.2"
       - "VM.Standard2.4"
       - "VM.Standard2.8"
       - "VM.Standard2.16"
       - "VM.Standard2.24"
-      visible: 
-        and:
-        - ${epm_financial_management}
-        - ${epm_htp_required}
-      required: true
+    visible:
+      and:
+      - epm_financial_management
+      - epm_htp_required
+    required: true
 
-    epm_htp_instance_bv_size_in_gb:
-      type: integer
-      title: Block Volume size (in GB)
-      description: The size of the block volume in GBs. Minimum required is 50 GB
-      minimum: 50
-      maximum: 32768
-      multipleof: 1
-      visible: 
-        and:
-        - ${epm_financial_management}
-        - ${epm_htp_required}
-      default: 100
-      required: true
+  epm_htp_instance_bv_size_in_gb:
+    type: integer
+    title: Block Volume size (in GB)
+    description: The size of the block volume in GBs. Minimum required is 50 GB
+    minimum: 50
+    maximum: 32768
+    multipleof: 1
+    visible:
+      and:
+      - epm_financial_management
+      - epm_htp_required
+    default: 100
+    required: true
 
-    epm_htp_instance_bv_vpus_per_gb:
-      title: Block Volume Performance
-      description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
-      visible: 
-        and:
-        - ${epm_financial_management}
-        - ${epm_htp_required}
-      type: enum
-      enum:
+  epm_htp_instance_bv_vpus_per_gb:
+    title: Block Volume Performance
+    description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
+    visible:
+      and:
+      - epm_financial_management
+      - epm_htp_required
+    type: enum
+    enum:
       - 0
       - 10
       - 20
-      default: 0
-      required: true
+    default: 0
+    required: true
 
-    epm_essbase_instance_count:
-      title: Number of Essbase Node(s)
-      description: Minimum required is 1
-      type: integer
-      minimum: 1
-      maximum: 2
-      default: 1
-      required: true
-      visible: 
-        and:
-        - ${epm_planning}
-        - ${epm_essbase_required}
+  epm_essbase_instance_count:
+    title: Number of Essbase Node(s)
+    description: Minimum required is 1
+    type: integer
+    minimum: 1
+    maximum: 2
+    default: 1
+    required: true
+    visible:
+      and:
+      - epm_planning
+      - epm_essbase_required
 
-#    epm_essbase_instance_shape:
-#      title: Essbase Instance Shape
-#      description: The shape for the Essbase instance.
-#      type: oci:core:instanceshape:name
-#      visible: 
-#        and:
-#        - ${epm_planning}
-#        - ${epm_essbase_required}
-#      default: VM.Standard2.1
-#      required: true
-#      dependsOn:
-#        compartmentId: ${compartment_ocid}
-
-    epm_essbase_instance_shape:
-      title: Essbase Instance Shape
-      description: The shape for the Essbase instance.
-      type: enum
-      default: VM.Standard2.1
-      enum:
+  epm_essbase_instance_shape:
+    title: Essbase Instance Shape
+    description: The shape for the Essbase instance.
+    type: enum
+    default: VM.Standard2.1
+    enum:
       - "VM.Standard2.1"
       - "VM.Standard2.2"
       - "VM.Standard2.4"
       - "VM.Standard2.8"
       - "VM.Standard2.16"
       - "VM.Standard2.24"
-      visible: 
-        and:
-        - ${epm_planning}
-        - ${epm_essbase_required}
-      required: true
+    visible:
+      and:
+      - epm_planning
+      - epm_essbase_required
+    required: true
 
-    epm_essbase_instance_bv_size_in_gb:
-      type: integer
-      title: Block Volume size (in GB)
-      description: The size of the block volume in GBs. Minimum required is 50 GB
-      minimum: 50
-      maximum: 32768
-      multipleof: 1
-      visible: 
-        and:
-        - ${epm_planning}
-        - ${epm_essbase_required}
-      default: 100
-      required: true
+  epm_essbase_instance_bv_size_in_gb:
+    type: integer
+    title: Block Volume size (in GB)
+    description: The size of the block volume in GBs. Minimum required is 50 GB
+    minimum: 50
+    maximum: 32768
+    multipleof: 1
+    visible:
+      and:
+      - epm_planning
+      - epm_essbase_required
+    default: 100
+    required: true
 
-    epm_essbase_instance_bv_vpus_per_gb:
-      title: Block Volume Performance
-      description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
-      visible: 
-        and:
-        - ${epm_planning}
-        - ${epm_essbase_required}
-      type: enum
-      enum:
+  epm_essbase_instance_bv_vpus_per_gb:
+    title: Block Volume Performance
+    description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
+    visible:
+      and:
+      - epm_planning
+      - epm_essbase_required
+    type: enum
+    enum:
       - 0
       - 10
       - 20
-      default: 0
-      required: true
+    default: 0
+    required: true
 
-    epm_strategic_finance_instance_count:
-      title: Number of Strategic Finance Node(s)
-      description: Minimum required is 1
-      type: integer
-      minimum: 1
-      maximum: 2
-      default: 1
-      required: true
-      visible: 
-        and:
-        - ${add_additional_products}
-        - ${epm_strategic_finance_required}
+  epm_strategic_finance_instance_count:
+    title: Number of Strategic Finance Node(s)
+    description: Minimum required is 1
+    type: integer
+    minimum: 1
+    maximum: 2
+    default: 1
+    required: true
+    visible:
+      and:
+      - add_additional_products
+      - epm_strategic_finance_required
 
-#    epm_strategic_finance_instance_shape:
-#      title: Strategic Finance Instance Shape
-#      description: The shape for the Strategic Finance instance
-#      type: oci:core:instanceshape:name
-#      visible: 
-#        and:
-#        - ${add_additional_products}
-#        - ${epm_strategic_finance_required}
-#      default: VM.Standard2.1
-#      required: true
-#      dependsOn:
-#        compartmentId: ${compartment_ocid}
-
-    epm_strategic_finance_instance_shape:
-      title: Strategic Finance Instance Shape
-      description: The shape for the Strategic Finance instance
-      type: enum
-      default: VM.Standard2.1
-      enum:
+  epm_strategic_finance_instance_shape:
+    title: Strategic Finance Instance Shape
+    description: The shape for the Strategic Finance instance
+    type: enum
+    default: VM.Standard2.1
+    enum:
       - "VM.Standard2.1"
       - "VM.Standard2.2"
       - "VM.Standard2.4"
       - "VM.Standard2.8"
       - "VM.Standard2.16"
       - "VM.Standard2.24"
-      visible: 
-        and:
-        - ${add_additional_products}
-        - ${epm_strategic_finance_required}
-      required: true
+    visible:
+      and:
+      - add_additional_products
+      - epm_strategic_finance_required
+    required: true
 
-    epm_strategic_finance_instance_bv_size_in_gb:
-      type: integer
-      title: Block Volume size (in GB)
-      description: The size of the block volume in GBs. Minimum required is 50 GB
-      minimum: 50
-      maximum: 32768
-      multipleof: 1
-      visible: 
-        and:
-        - ${add_additional_products}
-        - ${epm_strategic_finance_required}
-      default: 100
-      required: true
+  epm_strategic_finance_instance_bv_size_in_gb:
+    type: integer
+    title: Block Volume size (in GB)
+    description: The size of the block volume in GBs. Minimum required is 50 GB
+    minimum: 50
+    maximum: 32768
+    multipleof: 1
+    visible:
+      and:
+      - add_additional_products
+      - epm_strategic_finance_required
+    default: 100
+    required: true
 
-    epm_strategic_finance_instance_bv_vpus_per_gb:
-      title: Block Volume Performance
-      description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
-      visible: 
-        and:
-        - ${add_additional_products}
-        - ${epm_strategic_finance_required}
-      type: enum
-      enum:
+  epm_strategic_finance_instance_bv_vpus_per_gb:
+    title: Block Volume Performance
+    description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
+    visible:
+      and:
+      - add_additional_products
+      - epm_strategic_finance_required
+    type: enum
+    enum:
       - 0
       - 10
       - 20
-      default: 0
-      required: true
+    default: 0
+    required: true
 
-    epm_fdmee_instance_count:
-      title: Number of FDMEE Nodes
-      description: Minimum required is 1
-      type: integer
-      minimum: 1
-      maximum: 2
-      default: 1
-      required: true
-      visible: 
-        and:
-        - ${add_additional_products}
-        - ${epm_fdmee_required}
+  epm_fdmee_instance_count:
+    title: Number of FDMEE Nodes
+    description: Minimum required is 1
+    type: integer
+    minimum: 1
+    maximum: 2
+    default: 1
+    required: true
+    visible:
+      and:
+      - add_additional_product
+      - epm_fdmee_required
 
-#    epm_fdmee_instance_shape:
-#      title: FDMEE Instance Shape
-#      description: The shape for the FDMEE instance.
-#      type: oci:core:instanceshape:name
-#      visible: 
-#        and:
-#        - ${add_additional_products}
-#        - ${epm_fdmee_required}
-#      default: VM.Standard2.1
-#      required: true
-#      dependsOn:
-#        compartmentId: ${compartment_ocid}
-
-    epm_fdmee_instance_shape:
-      title: FDMEE Instance Shape
-      description: The shape for the FDMEE instance.
-      type: enum
-      default: VM.Standard2.1
-      enum:
+  epm_fdmee_instance_shape:
+    title: FDMEE Instance Shape
+    description: The shape for the FDMEE instance.
+    type: enum
+    default: VM.Standard2.1
+    enum:
       - "VM.Standard2.1"
       - "VM.Standard2.2"
       - "VM.Standard2.4"
       - "VM.Standard2.8"
       - "VM.Standard2.16"
       - "VM.Standard2.24"
-      visible: 
-        and:
-        - ${add_additional_products}
-        - ${epm_fdmee_required}
-      required: true
+    visible:
+      and:
+      - add_additional_products
+      - epm_fdmee_required
+    required: true
 
-    epm_fdmee_instance_bv_size_in_gb:
-      type: integer
-      title: Block Volume size (in GB)
-      description: The size of the block volume in GBs. Minimum required is 50 GB
-      minimum: 50
-      maximum: 32768
-      multipleof: 1
-      visible: 
-        and:
-        - ${add_additional_products}
-        - ${epm_fdmee_required}
-      default: 100
-      required: true
+  epm_fdmee_instance_bv_size_in_gb:
+    type: integer
+    title: Block Volume size (in GB)
+    description: The size of the block volume in GBs. Minimum required is 50 GB
+    minimum: 50
+    maximum: 32768
+    multipleof: 1
+    visible:
+      and:
+      - add_additional_products
+      - epm_fdmee_required
+    default: 100
+    required: true
 
-    epm_fdmee_instance_bv_vpus_per_gb:
-      title: Block Volume size (in GB)
-      description: The size of the block volume in GBs. Minimum required is 50 GB
-      visible: 
-        and:
-        - ${add_additional_products}
-        - ${epm_fdmee_required}
-      type: enum
-      enum:
+  epm_fdmee_instance_bv_vpus_per_gb:
+    title: Block Volume size (in GB)
+    description: The size of the block volume in GBs. Minimum required is 50 GB
+    visible:
+      and:
+      - add_additional_products
+      - epm_fdmee_required
+    type: enum
+    enum:
       - 0
       - 10
       - 20
-      default: 0
-      required: true
+    default: 0
+    required: true
 
-    epm_profitability_instance_count:
-      title: Number of Profitability Node(s)
-      description: Minimum required is 1
-      type: integer
-      minimum: 1
-      maximum: 2
-      default: 1
-      required: true
-      visible: 
-        and:
-        - ${add_additional_products}
-        - ${epm_profitability_required}
+  epm_profitability_instance_count:
+    title: Number of Profitability Node(s)
+    description: Minimum required is 1
+    type: integer
+    minimum: 1
+    maximum: 2
+    default: 1
+    required: true
+    visible:
+      and:
+      - add_additional_products
+      - epm_profitability_required
 
-#    epm_profitability_instance_shape:
-#      title: Profitability Instance Shape
-#      description: The shape for the Profitability instance.
-#      type: oci:core:instanceshape:name
-#      visible: 
-#        and:
-#        - ${add_additional_products}
-#        - ${epm_profitability_required}
-#      default: VM.Standard2.1
-#      required: true
-#      dependsOn:
-#        compartmentId: ${compartment_ocid}
-
-    epm_profitability_instance_shape:
-      title: Profitability Instance Shape
-      description: The shape for the Profitability instance.
-      default: VM.Standard2.1
-      type: enum
-      enum:
+  epm_profitability_instance_shape:
+    title: Profitability Instance Shape
+    description: The shape for the Profitability instance.
+    default: VM.Standard2.1
+    type: enum
+    enum:
       - "VM.Standard2.1"
       - "VM.Standard2.2"
       - "VM.Standard2.4"
       - "VM.Standard2.8"
       - "VM.Standard2.16"
       - "VM.Standard2.24"
-      visible: 
-        and:
-        - ${add_additional_products}
-        - ${epm_profitability_required}
-      required: true
+    visible:
+      and:
+      - add_additional_products
+      - epm_profitability_required
+    required: true
 
-    epm_profitability_instance_bv_size_in_gb:
-      type: integer
-      title: Block Volume size (in GB)
-      description: The size of the block volume in GBs. Minimum required is 50 GB
-      minimum: 50
-      maximum: 32768
-      multipleof: 1
-      visible: 
-        and:
-        - ${add_additional_products}
-        - ${epm_profitability_required}
-      default: 100
-      required: true
+  epm_profitability_instance_bv_size_in_gb:
+    type: integer
+    title: Block Volume size (in GB)
+    description: The size of the block volume in GBs. Minimum required is 50 GB
+    minimum: 50
+    maximum: 32768
+    multipleof: 1
+    visible:
+      and:
+      - add_additional_products
+      - epm_profitability_required
+    default: 100
+    required: true
 
-    epm_profitability_instance_bv_vpus_per_gb:
-      title: Block Volume Performance
-      description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
-      visible: 
-        and:
-        - ${add_additional_products}
-        - ${epm_profitability_required}
-      type: enum
-      enum:
+  epm_profitability_instance_bv_vpus_per_gb:
+    title: Block Volume Performance
+    description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
+    visible:
+      and:
+      - add_additional_products
+      - epm_profitability_required
+    type: enum
+    enum:
       - 0
       - 10
       - 20
-      default: 0
-      required: true
+    default: 0
+    required: true
 
-    epm_web_instance_count:
-      type: integer
-      title: Number of Web server Nodes.
-      description: Minimum required is 1
-      minimum: 1
-      maximum: 2
-      default: 1
-      visible: true
-      required: true
+  epm_web_instance_count:
+    type: integer
+    title: Number of Web server Nodes.
+    description: Minimum required is 1
+    minimum: 1
+    maximum: 2
+    default: 1
+    visible: true
+    required: true
 
-#    epm_web_instance_shape:
-#      title: Shape of Web server Node(s)
-#      description: The shape for the Web server instance.
-#      type: oci:core:instanceshape:name
-#      visible: true
-#      default: VM.Standard2.1
-#      required: true
-#      dependsOn:
-#        compartmentId: ${compartment_ocid}
-
-    epm_web_instance_shape:
-      title: Shape of Web server Node(s)
-      description: The shape for the Web server instance.
-      type: enum
-      enum:
+  epm_web_instance_shape:
+    title: Shape of Web server Node(s)
+    description: The shape for the Web server instance.
+    type: enum
+    enum:
       - "VM.Standard2.1"
       - "VM.Standard2.2"
       - "VM.Standard2.4"
       - "VM.Standard2.8"
       - "VM.Standard2.16"
       - "VM.Standard2.24"
-      visible: true
-      required: true
+    visible: true
+    required: true
 
-    epm_web_instance_bv_size_in_gb:
-      type: integer
-      title: Block Volume size (in GB)
-      description: The size of the block volume in GBs. Minimum required is 50 GB
-      minimum: 50
-      maximum: 32768
-      multipleof: 1
-      visible: true
-      default: 100
-      required: true
+  epm_web_instance_bv_size_in_gb:
+    type: integer
+    title: Block Volume size (in GB)
+    description: The size of the block volume in GBs. Minimum required is 50 GB
+    minimum: 50
+    maximum: 32768
+    multipleof: 1
+    visible: true
+    default: 100
+    required: true
 
-    epm_web_instance_bv_vpus_per_gb:
-      title: Block Volume Performance
-      description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
-      visible: true
-      type: enum
-      enum:
+  epm_web_instance_bv_vpus_per_gb:
+    title: Block Volume Performance
+    description: 0 is Lower Cost, 10 is Balanced and 20 is Higher Performance option
+    visible: true
+    type: enum
+    enum:
       - 0
       - 10
       - 20
-      default: 0
-      required: true
+    default: 0
+    required: true
 
-    epm_web_instance_listen_port:
-      title: Listen port for Web server
-      description: The listen port for the Web Server
-      type: string
-      default: 19000
-      visible: true
-      required: true
+  epm_web_instance_listen_port:
+    title: Listen port for Web server
+    description: The listen port for the Web Server
+    type: string
+    default: 19000
+    visible: true
+    required: true
 
-    timezone:
-      type: string
-      title: Timezone
-      description: The timezone of compute and database system(s)
-      visible: true
-      required: true
+  timezone:
+    type: string
+    title: Timezone
+    description: The timezone of compute and database system(s)
+    visible: true
+    required: true
 
-    enable_ssl_ports:
-      type: boolean
-      title: Enable SSL ports on all servers
-      description: Enable SSL ports
-      default: false
-      visible: false
+  enable_ssl_ports:
+    type: boolean
+    title: Enable SSL ports on all servers
+    description: Enable SSL ports
+    default: false
+    visible: false
 
-    availability_domain:
-      type: array
-      title: Enable SSL ports on all servers
-      description: Enable SSL ports
-      default: false
-      visible: false
+  availability_domain:
+    type: array
+    title: Enable SSL ports on all servers
+    description: Enable SSL ports
+    default: false
+    visible: false
 
-    fault_domain:
-      type: array
-      title: Enable SSL ports on all servers
-      description: Enable SSL ports
-      default: false
-      visible: false
+  fault_domain:
+    type: array
+    title: Enable SSL ports on all servers
+    description: Enable SSL ports
+    default: false
+    visible: false
 
-    db_edition:
-      title: Database Edition
-      visible: ${epm_database_required}
-      type: enum
-      enum:
+  db_edition:
+    title: Database Edition
+    visible: epm_database_required
+    type: enum
+    enum:
       - STANDARD_EDITION
       - ENTERPRISE_EDITION
       - ENTERPRISE_EDITION_HIGH_PERFORMANCE
       - ENTERPRISE_EDITION_EXTREME_PERFORMANCE
-      default: ENTERPRISE_EDITION_EXTREME_PERFORMANCE
-      required: true
+    default: ENTERPRISE_EDITION_EXTREME_PERFORMANCE
+    required: true
 
-
-    db_version:
-      title: Database Version
-      visible: ${epm_database_required}
-      type: enum
-      enum:
+  db_version:
+    title: Database Version
+    visible: epm_database_required
+    type: enum
+    enum:
       - 12.1.0.2
-      default: 12.1.0.2
-      required: true
+    default: 12.1.0.2
+    required: true
 
-    epm_database_backup_recovery_window:
-      title: DB Backup Recovery Window in Days
-      visible: false
-      type: enum
-      enum:
+  epm_database_backup_recovery_window:
+    title: DB Backup Recovery Window in Days
+    visible: false
+    type: enum
+    enum:
       - 7
       - 15
       - 30
       - 45
       - 60
-      default: 30
-      required: false
+    default: 30
+    required: false
 
-    db_instance_shape:
-      title: Database Instance Shape
-      description: The shape for the DB instance.
-      type: oci:core:instanceshape:name
-      visible: ${epm_database_required}
-      default: VM.Standard2.2
-      required: true
-      dependsOn:
-        compartmentId: ${compartment_ocid}
+  db_instance_shape:
+    title: Database Instance Shape
+    description: The shape for the DB instance.
+    type: oci:core:instanceshape:name
+    visible: epm_database_required
+    default: VM.Standard2.2
+    required: true
+    dependsOn:
+      compartmentId: compartment_ocid
 
-    db_node_count:
-      title: Number of Database Nodes
-      description: Select 2 for High Availability
-      visible: ${epm_database_required}
-      type: enum
-      enum:
+  db_node_count:
+    title: Number of Database Nodes
+    description: Select 2 for High Availability
+    visible: epm_database_required
+    type: enum
+    enum:
       - 1
       - 2
-      default: 2
-      required: true
-      
-    db_size_in_gb:
-      title: Database Size in GB
-      description: Database size in GB
-      visible: ${epm_database_required}
-      type: enum
-      enum:
+    default: 2
+    required: true
+
+  db_size_in_gb:
+    title: Database Size in GB
+    description: Database size in GB
+    visible: epm_database_required
+    type: enum
+    enum:
       - 256
       - 512
       - 1024
@@ -1071,139 +924,141 @@
       - 36864
       - 38912
       - 40960
-      default: 256
-      required: true
+    default: 256
+    required: true
 
-    db_license_model:
-      title: Database License
-      visible: ${epm_database_required}
-      type: enum
-      enum:
+  db_license_model:
+    title: Database License
+    visible: epm_database_required
+    type: enum
+    enum:
       - LICENSE_INCLUDED
       - BRING_YOUR_OWN_LICENSE
-      default: LICENSE_INCLUDED
-      required: true
+    default: LICENSE_INCLUDED
+    required: true
 
-    db_admin_password:
-      title: Database Admin User Password
-      description: "Password must be 9 to 30 characters and contain at least 2 uppercase, 2 lowercase, 2 special, and 2 numeric characters. The special characters must be _, #, or -."
-      type: password
-      visible: ${epm_database_required}
-      required: true
+  db_admin_password:
+    title: Database Admin User Password
+    description: "The password for the database. Password must be 9 to 30 characters and contain at least 2 uppercase, 2 lowercase, 2 special, and 2 numeric characters. The special characters must be _, #, or -. For example, XYh1z0#_d"
+    type: password
+    pattern: "^(?=.*[a-z].*[a-z])(?=.*[A-Z].*[A-Z])(?=.*\\d.*\\d)(?=.*[-_#].*[-_#])[a-zA-Z0-9\\S]{9,32}$"
+    required: true
+    visible: epm_database_required
 
-    db_name:
-      title: Database Container Name
-      description: The name of the CDB.
-      type: string
-      pattern: "^([a-zA-Z0-9][a-zA-Z0-9_]*)?$"
-      visible: ${epm_database_required}
-      default: EPMCDB
-      required: true
+  db_name:
+    title: Database Container Name
+    description: The name of the CDB.
+    type: string
+    pattern: "(^[a-zA-Z][a-zA-Z0-9_]{0,7})$"
+    visible: epm_database_required
+    default: EPMCDB
+    required: true
 
-    db_characterset:
-      type: string
-      visible: ${epm_database_required}
-      default: AL32UTF8
-      required: true
+  db_characterset:
+    type: string
+    visible: epm_database_required
+    default: AL32UTF8
+    required: true
 
-    db_nls_characterset:
-      type: string
-      visible: ${epm_database_required}
-      default: AL16UTF16
-      required: true
+  db_nls_characterset:
+    type: string
+    visible: epm_database_required
+    default: AL16UTF16
+    required: true
 
-    db_pdb_name:
-      title: Database PDB Name
-      description: The name of the PDB.
-      type: string
-      pattern: "^([a-zA-Z0-9][a-zA-Z0-9_]*)?$"
-      visible: ${epm_database_required}
-      default: EPMDB
-      required: true
+  db_pdb_name:
+    title: Database PDB Name
+    description: The name of the PDB.
+    type: string
+    pattern: "(^[a-zA-Z][a-zA-Z0-9_]{0,7})$"
+    visible: epm_database_required
+    default: EPMDB
+    required: true
 
-    foundation_db_name:
-      title: Database Container Name
-      description: The name of the CDB.
-      type: string
-      pattern: "^([a-zA-Z0-9][a-zA-Z0-9_]*)?$"
-      visible: ${foundation_db_separate}
-      default: FNDCDB
-      required: true
+  foundation_db_name:
+    title: Database Container Name
+    description: The name of the CDB.
+    type: string
+    pattern: "(^[a-zA-Z][a-zA-Z0-9_]{0,7})$"
+    visible: ${foundation_db_separate}
+    default: FNDCDB
+    required: true
 
-    foundation_pdb_name:
-      title: Database PDB Name
-      description: The name of the PDB.
-      type: string
-      pattern: "^([a-zA-Z0-9][a-zA-Z0-9_]*)?$"
-      visible: ${foundation_db_separate}
-      default: FNDDB
-      required: true
+  foundation_pdb_name:
+    title: Database PDB Name
+    description: The name of the PDB.
+    type: string
+    pattern: "(^[a-zA-Z][a-zA-Z0-9_]{0,7})$"
+    visible: foundation_db_separate
+    default: FNDDB
+    required: true
 
-    foundation_db_admin_password:
-      title: Database Admin User Password
-      description: "Password must be 9 to 30 characters and contain at least 2 uppercase, 2 lowercase, 2 special, and 2 numeric characters. The special characters must be _, #, or -."
-      type: password
-      visible: ${foundation_db_separate}
-      required: true
+  foundation_db_admin_password:
+    title: Database Admin User Password
+    description: "The password for the database. Password must be 9 to 30 characters and contain at least 2 uppercase, 2 lowercase, 2 special, and 2 numeric characters. The special characters must be _, #, or -. For example, XYh1z0#_d"
+    type: password
+    pattern: "^(?=.*[a-z].*[a-z])(?=.*[A-Z].*[A-Z])(?=.*\\d.*\\d)(?=.*[-_#].*[-_#])[a-zA-Z0-9\\S]{9,32}$"
+    required: true
+    visible: foundation_db_separate
 
-    foundation_db_version:
-      title: Database Version
-      visible: ${foundation_db_separate}
-      type: enum
-      enum:
+  foundation_db_version:
+    title: Database Version
+    visible: foundation_db_separate
+    type: enum
+    enum:
       - 12.1.0.2
-      default: 12.1.0.2
-      required: true
+    default: 12.1.0.2
+    required: true
 
-    foundation_db_edition:
-      title: Database Edition
-      visible: ${foundation_db_separate}
-      type: enum
-      enum:
+  foundation_db_edition:
+    title: Database Edition
+    visible: foundation_db_separate
+    type: enum
+    enum:
       - STANDARD_EDITION
       - ENTERPRISE_EDITION
       - ENTERPRISE_EDITION_HIGH_PERFORMANCE
       - ENTERPRISE_EDITION_EXTREME_PERFORMANCE
-      default: ENTERPRISE_EDITION_EXTREME_PERFORMANCE
-      required: true
+    default: ENTERPRISE_EDITION_EXTREME_PERFORMANCE
+    required: true
 
-    foundation_db_license_model:
-      title: Database License
-      visible: ${foundation_db_separate}
-      type: enum
-      enum:
+  foundation_db_license_model:
+    title: Database License
+    visible: foundation_db_separate
+    type: enum
+    enum:
       - LICENSE_INCLUDED
       - BRING_YOUR_OWN_LICENSE
-      default: LICENSE_INCLUDED
-      required: true
+    default: LICENSE_INCLUDED
+    required: true
 
-    foundation_db_node_count:
-      title: Number of Database Nodes
-      description: Select 2 for High Availability
-      visible: ${foundation_db_separate}
-      type: enum
-      enum:
+  foundation_db_node_count:
+    title: Number of Database Nodes
+    description: Select 2 for High Availability
+    visible: foundation_db_separate
+    type: enum
+    enum:
       - 1
       - 2
-      default: 2
-      required: true
+    default: 2
+    required: true
 
-    foundation_db_instance_shape:
-      title: Database Instance Shape
-      description: The shape for the DB instance.
-      type: oci:core:instanceshape:name
-      visible: ${foundation_db_separate}
-      default: VM.Standard2.2
-      required: true
-      dependsOn:
-        compartmentId: ${compartment_ocid}
+  foundation_db_instance_shape:
+    title: Database Instance Shape
+    description: The shape for the DB instance.
+    type: oci:core:instanceshape:name
+    visible: foundation_db_separate
+    default: VM.Standard2.2
+    required: true
+    dependsOn:
+      compartmentId: compartment_ocid
 
-    foundation_db_size_in_gb:
-      title: Database Size in GB
-      description: Database size in GB
-      visible: ${foundation_db_separate}
-      type: enum
-      enum:
+  foundation_db_size_in_gb:
+    title: Database Size in GB
+    description: Database size in GB
+    visible: foundation_db_separate
+    type: enum
+    enum:
       - 256
       - 512
       - 1024
@@ -1226,107 +1081,132 @@
       - 36864
       - 38912
       - 40960
-      default: 256
-      required: true
+    default: 256
+    required: true
 
-    foundation_db_characterset:
-      type: string
-      visible: ${foundation_db_separate}
-      default: AL32UTF8
-      required: true
+  foundation_db_characterset:
+    type: string
+    visible: foundation_db_separate
+    default: AL32UTF8
+    required: true
 
-    foundation_db_nls_characterset:
-      type: string
-      visible: ${foundation_db_separate}
-      default: AL16UTF16
-      required: true
+  foundation_db_nls_characterset:
+    type: string
+    visible: foundation_db_separate
+    default: AL16UTF16
+    required: true
 
-    load_balancer_shape:
-      title: Load Balancer Shape
-      description: Select load balancer shape.
-      type: enum
-      enum:
+  load_balancer_shape:
+    title: Load Balancer Shape
+    description: Select load balancer shape.
+    type: enum
+    enum:
+      - 10Mbps
       - 100Mbps
       - 400Mbps
       - 8000Mbps
-      default: 100Mbps
-      required: true
-      visible: true
+    default: 100Mbps
+    required: true
+    visible: true
 
-    load_balancer_private:
-      title: Private Load Balancer
-      description: Create a private load balancer for internal application endpoints
-      type: boolean
-      default: false
-      visible: true
-      required: true
+  load_balancer_private:
+    title: Private Load Balancer
+    description: Create a private load balancer for internal application endpoints
+    type: boolean
+    default: false
+    visible: true
+    required: true
 
-    load_balancer_hostname:
-      title: Load Balancer Hostname
-      description: Hostname of Load Balancer
-      type: string
-      default: epminternal.mycompany.com
-      visible: true
-      required: true
+  load_balancer_hostname:
+    title: Load Balancer Hostname
+    description: Hostname of Load Balancer
+    type: string
+    default: epminternal.mycompany.com
+    visible: true
+    required: true
 
-    load_balancer_listen_port:
-      title: Load Balancer Listen port
-      description: The listener port for load balanacer
-      type: array
-      visible: true
-      default: 19000
-      required: true
+  load_balancer_listen_port:
+    title: Load Balancer Listen port
+    description: The listener port for load balanacer
+    type: array
+    visible: true
+    default: 19000
+    required: true
 
-    timeout:
-      type: string
-      visible: false
+  timeout:
+    type: string
+    visible: false
 
-    epm_shared_filesystem_path:
-      title: EPM Shared Filesystem path
-      description: EPM Shared Filesystem path
-      type: string
-      visible: false
+  epm_shared_filesystem_path:
+    title: EPM Shared Filesystem path
+    description: EPM Shared Filesystem path
+    type: string
+    visible: false
 
-    epm_shared_filesystem_size_limit_in_gb:
-      title: EPM Shared Filesystem Size Limit
-      description: EPM Shared Filesystem Size Limit in GB
-      type: string
-      visible: false
+  epm_shared_filesystem_size_limit_in_gb:
+    title: EPM Shared Filesystem Size Limit
+    description: EPM Shared Filesystem Size Limit in GB
+    type: string
+    visible: false
 
-    platform-images:
-      type: map
-      visible: false
+  platform-images:
+    type: map
+    visible: false
 
-    AD:
-      title: Availability Domain(s)
-      description: Availability Domain for Oracle EPM Deployment. This variable drives the Oracle EPM architecture to be deployed. Setting AD = ["1"] deploys infrastructure in single availability domain (Availabilty domain 1 of the tenancy) and AD = ["1","2"] deploys infrastructure in multiple ADs (Availability domains 1 and 2 of the tenancy).
-      type: array
-      visible: true
-      required: true
+  AD:
+    title: Availability Domain(s)
+    description: Availability Domain for EPM Infrastructure provisioning. This variable drives the Oracle EPM architecture to be deployed. Setting AD = ["1"] deploys infrastructure in single availability domain (Availabilty domain 1 of the tenancy) and AD = ["1","2"] deploys infrastructure in multiple ADs (Availability domains 1 and 2 of the tenancy).
+    type: array
+    visible: true
+    required: true
 
-  outputs:
-    BastionPublicIPs:
-      title: EPM Bastion Public IP
-      type: string
+outputs:
+  bastion_public_ips:
+    title: Bastion host IP
+    type: copyableString
+    visible: true
 
-    epmFoundationServerPrivateIPs:
-      title: EPM Foundation Server Details
-      type: string
+  epm_foundation_server_private_ips:
+    title: Foundation Server Details
+    type: copyableString
+    visible: true
 
-    epmHFMServerPrivateIPs:
-      title: EPM HFM Server Details
-      type: string
-  
-    epmWebServerPrivateIPs:
-      title: EPM Web Server Details
-      type: string
-  
-    epmPlanningServerPrivateIPs:
-      title: EPM Planning Server Details
-      type: string
+  epm_hfm_server_private_ips:
+    title: HFM Server Details
+    type: copyableString
+    visible: true
 
-    epmEssbaseServerDetail:
-      title: EPM Essbase Server Details
-      type: string
+  epm_web_server_private_ips:
+    title: Web Server Details
+    type: copyableString
+    visible: true
 
-  primaryOutputButton: ${BastionPublicIPs}
+  epm_planning_server_private_ips:
+    title: Planning Server Details
+    type: copyableString
+    visible: true
+
+  epm_essbase_server_details:
+    title: Essbase Server Details
+    type: string
+    visible: true
+
+  epm_profitability_server_details:
+    title: Profitability Server Details
+    type: string
+    visible: true
+
+  epm_strategic_finance_server_details:
+    title: Strategic Finance Server Details
+    type: string
+    visible: true
+
+  load_balancer_ip:
+    title: Load Balancer IP
+    type: string
+    visible: true
+
+  database_connection_string:
+    title: Database Connection String
+    type: string
+    visible: true

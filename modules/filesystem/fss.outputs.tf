@@ -5,15 +5,15 @@ The Universal Permissive License (UPL), Version 1.0*/
 
 output "FilesystemPrivateIPs" {
   description = "FSS Private IPs"
-  value       = "${data.template_file.fss_ips.*.rendered}"
+  value       = data.template_file.fss_ips.*.rendered
 }
 
 output "FilesystemExports" {
   description = "FSS Exports"
-  value       = "${local.fss_exports}"
+  value       = local.fss_exports
 }
 
 output "FilesystemFstabs" {
   description = "FSS /etc/fstab Entries"
-  value       = "${local.fss_fstabs}"
+  value       = local.fss_fstabs
 }
